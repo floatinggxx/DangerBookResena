@@ -1,26 +1,22 @@
 package com.DangerBook.Resena.API.Resena.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "resena")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Data
 public class Resena {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_reseña")
-    private Integer id_reseña;
+    @Column(name = "id_resena")
+    private Integer idResena;
 
     @Column(name = "f_publicacion")
-    private LocalDate f_publicacion = LocalDate.now();
+    private LocalDate fPublicacion = LocalDate.now();
 
     @Column(name = "comentario", length = 500)
     private String comentario;
@@ -29,8 +25,8 @@ public class Resena {
     private Integer calificacion; // 1..5
 
     @Column(name = "f_baneo")
-    private LocalDate f_baneo;
+    private LocalDate fBaneo;
 
     @Column(name = "motivo_baneo", length = 300)
-    private String motivo_baneo;
+    private String motivoBaneo;
 }

@@ -1,7 +1,8 @@
 package com.DangerBook.Resena.API.Resena.controller;
 
+import com.DangerBook.Resena.API.Resena.controller.ResenaController;
 import com.DangerBook.Resena.API.Resena.model.Resena;
-import com.DangerBook.Resena.API.Resena.service.ResenaService;
+import com.DangerBook.Resena.API.Resena.service.ResenaServiceTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ public class ResenaControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private ResenaService resenaService;
+    private ResenaServiceTest resenaService;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -34,12 +35,11 @@ public class ResenaControllerTest {
 
     @BeforeEach
     void setUp() {
-        resena = Resena.builder()
-                .id_reseña(1)
-                .f_publicacion(LocalDate.now())
-                .comentario("Muy buen servicio")
-                .calificacion(5)
-                .build();
+        resena = new Resena();
+        resena.setIdResena(1);
+        resena.setFPublicacion(LocalDate.now());
+        resena.setComentario("Muy buen servicio");
+        resena.setCalificacion(5);
     }
 
     @Test
@@ -48,9 +48,35 @@ public class ResenaControllerTest {
 
         mockMvc.perform(get("/api/v1/resenas"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id_reseña").value(1))
+                .andExpect(jsonPath("$[0].idResena").value(1))
                 .andExpect(jsonPath("$[0].comentario").value("Muy buen servicio"))
                 .andExpect(jsonPath("$[0].calificacion").value(5));
+    }
+
+    @Test
+    void testListarResenasVacio() throws Exception {
+        when(resenaService.findAll()).thenReturn(List.of());
+
+        mockMvc.perform(get("/api/v1/resenas"))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    void testBuscarPorId() throws Exception {
+        when(resenaService.findById(1)).thenReturn(resena);
+
+        mockMvc.perform(get("/api/v1/resenas/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.idResena").value(1))
+                .andExpect(jsonPath("$.comentario").value("Muy buen servicio"));
+    }
+
+    @Test
+    void testBuscarPorIdNoEncontrado() throws Exception {
+        when(resenaService.findById(99)).thenThrow(new RuntimeException("Reseña no encontrada"));
+
+        mockMvc.perform(get("/api/v1/resenas/99"))
+                .andExpect(status().isNotFound());
     }
 
     @Test
@@ -61,6 +87,14 @@ public class ResenaControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(resena)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id_reseña").value(1));
+                .andExpect(jsonPath("$.idResena").value(1));
+    }
+
+    @Test
+    void testEliminarResena() throws Exception {
+        doNothing().when(resenaService).delete(1);
+
+        mockMvc.perform(delete("/api/v1/resenas/1"))
+                .andExpect(status().isNoContent());
     }
 }
