@@ -1,7 +1,8 @@
 package com.DangerBook.Resena.API.Resena.controller;
 
 import com.DangerBook.Resena.API.Resena.model.Resena;
-import com.DangerBook.Resena.API.Resena.service.ResenaServiceTest;
+import com.DangerBook.Resena.API.Resena.service.ResenaService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.List;
 public class ResenaController {
 
     @Autowired
-    private ResenaServiceTest resenaService;
+    private ResenaService resenaService;
 
     @GetMapping
     public ResponseEntity<List<Resena>> getAll() {

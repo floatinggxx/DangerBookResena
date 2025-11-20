@@ -1,8 +1,8 @@
-package com.DangerBook.Resena.API.Resena.controller;
+package com.DangerBook.Resena.API.Resena.Controller;
 
 import com.DangerBook.Resena.API.Resena.controller.ResenaController;
 import com.DangerBook.Resena.API.Resena.model.Resena;
-import com.DangerBook.Resena.API.Resena.service.ResenaServiceTest;
+import com.DangerBook.Resena.API.Resena.service.ResenaService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -26,7 +27,7 @@ public class ResenaControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private ResenaServiceTest resenaService;
+    private ResenaService resenaService;
 
     @Autowired
     private ObjectMapper objectMapper;

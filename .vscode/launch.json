@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<api-resena>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.DangerBook.Resena.API.Resena.Application",
+            "projectName": "api-resena",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

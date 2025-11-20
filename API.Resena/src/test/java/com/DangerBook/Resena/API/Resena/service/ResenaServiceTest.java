@@ -1,8 +1,10 @@
-package com.DangerBook.Resena.API.Resena.service;
+package com.DangerBook.Resena.API.Resena.Service;
 
+import com.DangerBook.Resena.API.Resena.Service.ResenaServiceTest;
 import com.DangerBook.Resena.API.Resena.model.Resena;
 import com.DangerBook.Resena.API.Resena.repository.ResenaRepository;
 import com.DangerBook.Resena.API.Resena.service.ResenaService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
