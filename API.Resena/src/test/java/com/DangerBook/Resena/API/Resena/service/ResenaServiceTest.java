@@ -1,6 +1,6 @@
-package com.DangerBook.Resena.API.Resena.Service;
+package com.DangerBook.Resena.API.Resena.service;
 
-import com.DangerBook.Resena.API.Resena.Service.ResenaServiceTest;
+
 import com.DangerBook.Resena.API.Resena.model.Resena;
 import com.DangerBook.Resena.API.Resena.repository.ResenaRepository;
 import com.DangerBook.Resena.API.Resena.service.ResenaService;
