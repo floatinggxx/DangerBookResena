@@ -1,4 +1,4 @@
-package com.DangerBook.Resena.API.Resena.service;
+package com.DangerBook.Resena.API.Resena.Service;
 
 
 import com.DangerBook.Resena.API.Resena.model.Resena;
